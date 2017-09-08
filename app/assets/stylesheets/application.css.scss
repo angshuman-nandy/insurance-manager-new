@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.brand{
+  text-align: center;
+h1{
+  color: black;
+  font-family: 'Rancho', cursive;
+}
+ h1,a:hover{
+  
+  text-decoration: none;
+  }
+}
+.name_box{
+
+  background-color: black;
+  
+  font-family: 'Neucha', cursive;
+  h3{
+      color: white;
+      font-size: 20px;
+      
+  }
+  h3:hover{
+  cursor: pointer;
+  }
+}
+.display_box{
+  margin-top: 5%;
+  padding: 2%;
+  color: black;
+  font-family: 'Neucha', cursive;
+  
+  box-shadow: 10px 10px 5px grey;
+
+  h2{
+  font-size: 25px;
+  }
+
+  h3{
+  font-size: 20px;
+  }
+
+}
+
+.form_header{
+  font-family: 'Neucha', cursive;
+  margin-top: 5%;
+  margin-bottom: 1%;
+}
+.table_header{
+  font-family: 'Neucha', cursive;
+  margin-top: 5%;
+}
+.new_btn{
+   font-family: 'Neucha', cursive;
+  margin-top: 6%;
+  margin-bottom: 2%;
+  a{
+  font-weight: bold;
+  }
+}
+.form_box{
+  box-shadow: 10px 10px 5px grey;
+  font-family: 'Neucha', cursive;
+
+  label{
+    font-size: 20px;
+  }
+  input{
+  ont-size: 15px;
+  }
+}
+.table_box{
+  box-shadow: 10px 10px 5px grey;
+  font-family: 'Neucha', cursive;
+  thead{
+  font-size: 20px;
+  color:white;
+  background-color: black;
+  }
+  tbody,a{
+  font-size: 15px;
+  font-weight: bold;
+  }
+}

@@ -1,0 +1,2 @@
+class Poltype < ApplicationRecord
+end

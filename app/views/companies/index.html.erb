@@ -1,0 +1,33 @@
+<div class="container">
+<div class="rows">
+  <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+  <%= link_to_new(new_company_path) if current_user.admin==true %>
+  <%= link_to_dash %>
+  </div>
+  <div class="col-md-pull-6 col-sm-6 col-xs-12 table_header" >
+   <h2>All available companies</h2>
+    <h3> this list displays all the companies<br></h3>
+  </div>
+</div>
+</div>
+
+<div class="container table_box">
+  <div class="table-responsive">                 
+  <table class="table table-responsive table-striped">
+    <thead class="thead-inverse">
+      <tr>
+      <th>Name</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @companies.each do |i| %>
+        <tr>
+        <td><%=i.name%></td>
+         <td><%= link_to_show(company_path(id: i.id)) %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

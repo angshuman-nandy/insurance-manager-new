@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>InsuranceManager</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Neucha|Monda|Rancho" rel="stylesheet"> 
+  </head>
+
+  <body>
+
+   <div class="container brand">
+      <%= link_to dash_welcome_path do %>
+      <h1>Insurance Manager</h1>
+      <%end%>
+      </div>
+         <%= render 'layouts/name' %>
+    <%= yield %>
+  </body>
+</html>

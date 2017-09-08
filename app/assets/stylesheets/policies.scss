@@ -1,0 +1,48 @@
+// Place all the styles related to the Policies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.company_type_box{
+  padding: 2%;
+  color: black;
+  height: 250px;
+  font-family: 'Neucha', cursive;
+  
+  box-shadow: 10px 10px 5px grey;
+
+  h2{
+  font-size: 25px;
+  }
+
+  h3{
+  font-size: 15px;
+  }
+
+}
+
+.company_type_box:hover{
+  box-shadow: 10px 10px 5px black;
+  background-color: #eeeeee; 
+}
+
+.plan_type_box{
+  padding: 2%;
+  color: black;
+  height: 300px;
+  font-family: 'Neucha', cursive;
+  
+  box-shadow: 10px 10px 5px grey;
+
+  h2{
+  font-size: 25px;
+  }
+
+  h3{
+  font-size: 15px;
+  }
+
+}
+
+.plan_type_box:hover{
+  box-shadow: 10px 10px 5px black;
+  background-color: #eeeeef; 
+}

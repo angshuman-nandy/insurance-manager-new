@@ -1,0 +1,40 @@
+ <div class="container form_box">
+ <%= form_for @company, :html => {:class => "form-horizontal center"} do |f| %>
+   <% if @company.errors.any? %>
+        <div id="error_explanation col-sm-offset-4" style="color: red;">
+          <h2>
+          <%= pluralize(@company.errors.count, "error") %> prohibited
+          this company from being saved:
+          </h2>
+          <ul>
+          <% @company.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :name, "Name", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.text_field :name, placeholder: "name of company", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, "Description", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.text_field :description,placeholder: "brief description", class: "form-control" %>
+        </div>
+      </div>
+
+     
+     <div class="form-group">        
+      <div class="col-sm-offset-4 col-sm-10">
+        <%= f.submit "Submit", class: "btn btn-success btn-lg" %>
+        <%= link_back(companies_path) %>
+        <%= link_to_dash %>
+      </div>
+      
+     
+ <% end %>
+ </div>

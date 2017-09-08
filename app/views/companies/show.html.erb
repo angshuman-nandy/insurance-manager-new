@@ -1,0 +1,20 @@
+<div class="container">
+<div class="rows">
+  <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+  <%= link_back(companies_path) %>
+  <%= link_to_dash %>
+  <% if current_user.admin==true %>
+  <%= edit_link(edit_company_path(@company.id)) %>
+  <%= delete_link(company_path(@company.id)) %>
+  <% end %>
+  </div>
+</div>
+</div>
+<div class="container">
+  <div class="rows">
+    <div class="col-md-offset-3 col-md-6 display_box" >
+      <h2> <%= @company.name %> </h2>
+      <h3><strong>Description: </strong>  <%= @company.description %> </h3>
+    </div>
+  </div>
+</div>

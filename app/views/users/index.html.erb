@@ -1,0 +1,32 @@
+<div class="container">
+<div class="rows">
+  <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+  <%= link_to_dash %>
+  </div>
+  <div class="col-md-pull-6 col-sm-6 col-xs-12 table_header" >
+   <h2 >All users</h2>
+    <p>this list displays all the users</p><br><br>  
+  </div>
+</div>
+</div>
+<div class="container table_box">
+  <div class="table-responsive">                 
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+      <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |i| %>
+        <tr>
+        <td><%=i.first_name%></td>
+        <td><%=i.last_name%></td>
+         <td><%= link_to_show(user_path(id: i.id)) %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
