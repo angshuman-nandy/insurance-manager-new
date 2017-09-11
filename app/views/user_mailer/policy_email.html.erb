@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @user.first_name %> <%= @user.last_name %> </h1><br>
+    <p>
+      new policy created!!<br>
+        <strong>plan</strong><%= @plan.name %><br>
+        <strong>company</strong><%= @company.name %><br>
+        <strong>date of purchase</strong><%= @policy.purchase_date %><br>
+        <strong>maturity date</strong><%= @policy.mature_date %><br>
+        <strong>insured amount</strong><%= @policy.sum_insured %><br>
+        <strong>premium amount</strong><%= @policy.premium_amount %><br>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

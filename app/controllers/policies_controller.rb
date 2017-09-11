@@ -19,6 +19,7 @@ class PoliciesController < ApplicationController
     @plan = Plan.find(@p_id) 
     @users = User.all
     if @policy.save
+      UserMailer.policy_email(@user,@policy).deliver_later
       redirect_to policies_path, flash: {success: "policy saved!!"}
     else
       render "new"

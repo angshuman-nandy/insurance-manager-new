@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
+    if @user.id != current_user.id
+      redirect_to dash_welcome_path
+    end
   end
 
   def destroy
