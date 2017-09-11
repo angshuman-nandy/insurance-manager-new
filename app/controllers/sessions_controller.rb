@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
   before_action :session_active, only:[:new,:create]
-  def new
-  end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
@@ -16,6 +14,6 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url
-
   end
+  
 end

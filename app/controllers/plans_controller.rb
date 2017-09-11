@@ -1,19 +1,8 @@
 class PlansController < ApplicationController
   before_action :logged_in_user
   before_action :get_plan, only:[:edit, :update, :destroy, :show] 
-   before_action :exclusive_admin, only: [:create, :new, :edit, :destroy]
+  before_action :exclusive_admin, only: [:create, :new, :edit, :destroy]
 
-  def index
-    @plans= Plan.all.reorder("Company_id")  
-  end
-
-  def show
-  end
-
-
-  def new
-    @plan = Plan.new
-  end
 
   def create
     @plan = Plan.new(plan_params)
@@ -23,10 +12,21 @@ class PlansController < ApplicationController
       render "new"
     end
   end
-  
-  def edit
-    
+
+   def destroy
+    @plan.destroy
+    redirect_to plans_path, notice: "plan deleted!!"
   end
+
+
+  def index
+    @plans= Plan.all.reorder("Company_id")  
+  end
+
+  def new
+    @plan = Plan.new
+  end
+
 
   def update
      if @plan.update(plan_params)
@@ -35,11 +35,6 @@ class PlansController < ApplicationController
       render "edit"
     end
     
-  end
-
-  def destroy
-    @plan.destroy
-    redirect_to plans_path, notice: "plan deleted!!"
   end
 
 

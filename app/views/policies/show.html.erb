@@ -8,8 +8,8 @@
   <%= link_back(policies_path) %>
   <%= link_to_dash %>
   <% if current_user.admin==true %>
-  <%= edit_link(edit_plan_path(@plan.id)) %>
-  <%= delete_link(plan_path(@plan.id)) %>
+  <%= edit_link(edit_policy_path(@policy.id)) %>
+  <%= delete_link(policy_path(@policy.id)) %>
   <% end %>
   </div>
 </div>

@@ -1,6 +1,23 @@
 class CommentsController < ApplicationController
 before_action :logged_in_user
 
+def create
+ @comment = Comment.new(comment_params)
+ @policy_id = @comment.policy_id
+  if @comment.save
+   redirect_to comments_path(policy_id: @policy_id)
+  else
+    render "new"
+  end
+end
+
+def destroy
+  @comment = Comment.find(params[:id])
+  @p_id = @comment.policy_id
+  @comment.destroy
+  redirect_to comments_path(policy_id: @p_id)
+end
+
 
 def index
   @policy_id = params[:policy_id]
@@ -19,25 +36,6 @@ def new
     @comment = Comment.new()
   end
 end
-
-def create
- @comment = Comment.new(comment_params)
- @policy_id = @comment.policy_id
-  if @comment.save
-   redirect_to comments_path(policy_id: @policy_id)
-  else
-    render "new"
-  end
-end
-
-
-def destroy
-  @comment = Comment.find(params[:id])
-  @p_id = @comment.policy_id
-  @comment.destroy
-  redirect_to comments_path(policy_id: @p_id)
-end
-
 
 private
 

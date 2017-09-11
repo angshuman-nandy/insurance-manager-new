@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 <div class="container-fluid name_box">
-  <div class="dropdown col-md-offset-8 col-md-4">
-    <h3 data-toggle="dropdown"><%= current_user.first_name %> <%= current_user.last_name%>
+  <div class="dropdown col-md-offset-8 col-sm-offset-5 col-xs-offset-3 col-md-4">
+    <h3 data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <%= current_user.first_name %> <%= current_user.last_name%>
      </h3>
     <ul class="dropdown-menu dropdown-menu-center">
             <li class="text-center"> <%= link_to "home", dash_welcome_path %> </li>
@@ -12,3 +12,5 @@
   </div>
 </div>
 <% end %>
+
+
