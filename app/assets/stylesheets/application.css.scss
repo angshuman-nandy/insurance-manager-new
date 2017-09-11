@@ -16,6 +16,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+notice-display{
+    background-color: black;
+    color:white;
+    margin-bottom: 0;
+ }
 .brand{
   text-align: center;
 h1{
@@ -79,6 +84,7 @@ h1{
 .form_box{
   box-shadow: 10px 10px 5px grey;
   font-family: 'Neucha', cursive;
+  max_width: 80%;
 
   label{
     font-size: 20px;

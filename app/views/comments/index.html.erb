@@ -1,0 +1,45 @@
+<% if @comments.count != 0 %>
+
+  <div class="container">
+  <div class="rows">
+    <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+    <%= link_to_new(new_comment_path(policy_id: @policy_id)) %>
+    <%= link_back(policies_path) %>
+    <%= link_to_dash %>
+    </div>
+    <div class="col-md-pull-6 col-sm-6 col-xs-12 table_header" >
+     <h2>All comments</h2>
+    </div>
+  </div>
+  </div>
+
+  <div class="container table_box">
+  <div class="rows">
+    <% @comments.each do |i| %>
+      <% @user = User.find(i.user_id) %>
+      <div class="container post-box">
+      <div class="col-md-offset-1 col-md-6 col-sm-12 col-xs-12">
+        <h3><%=i.body %></h3>
+        <p><%= @user.first_name %> <%= @user.last_name %></p>
+      </div>
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <%= delete_link(comment_path(i.id)) %>
+      </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="container">
+  <div class="rows">
+    <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+    <%= link_to_new(new_comment_path(policy_id: @policy_id)) %>
+    <%= link_back(policies_path) %>
+    <%= link_to_dash %>
+    </div>
+    <div class="col-md-pull-6 col-sm-6 col-xs-12 table_header" >
+     <h2>no comments yet</h2>
+    </div>
+  </div>
+  </div>
+<% end %>

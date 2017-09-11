@@ -10,6 +10,7 @@
   </head>
 
   <body>
+   <% flash.each do |key, value| %><div class="notice-display flash <%= key %>""><%= value %></div><% end %>
 
    <div class="container brand">
       <%= link_to dash_welcome_path do %>

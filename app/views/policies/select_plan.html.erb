@@ -1,23 +1,37 @@
-<div class="container">
-<div class="rows">
-  <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
-  <%= link_back(policies_select_company_path) %>
-  <%= link_to_dash %>
-  </div>
-</div>
-</div>
-<div class="container">
-    <div class="rows">
-      <% @plans.each do |i| %>
-      <%= link_to new_policy_path(:plan_id => i.id) do %>
-      <div class="col-md-5 plan_type_box" >
-        <h2><%=i.name%></h2><br>
-        <h3><strong>description:</strong> <%=i.description%></h3>
-        <h3><strong>insured_amount:</strong> <%=i.sum_insured%> INR</h3>
-        <h3><strong>premium_amount:</strong> <%=i.premium_amount%> INR</h3>
-        <h3><strong>duration:</strong> <%=i.duration%> years</h3>
-      </div>
-      <% end %>
-      <% end %>
+<% if @plans.count !=0 %>
+
+  <div class="container">
+  <div class="rows">
+    <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+    <%= link_back(policies_select_company_path) %>
+    <%= link_to_dash %>
     </div>
-</div>
+  </div>
+  </div>
+  <h2 class="col-md-offset-5 col-sm-offset-5 col-xs-offset-4 form_header"> step 2: Select a plan</h2>
+  <div class="container">
+      <div class="rows">
+        <% @plans.each do |i| %>
+        <%= link_to new_policy_path(:plan_id => i.id) do %>
+        <div class="col-md-4 plan_type_box" >
+          <h2><%=i.name%></h2><br>
+          <h3><strong>description:</strong> <%=i.description%></h3>
+          <h3><strong>insured_amount:</strong> <%=i.sum_insured%> INR</h3>
+          <h3><strong>premium_amount:</strong> <%=i.premium_amount%> INR</h3>
+          <h3><strong>duration:</strong> <%=i.duration%> years</h3>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+  </div>
+<% else %>
+  <div class="container">
+  <div class="rows">
+    <div class="col-md-push-6 col-sm-6 col-xs-12 new_btn" >
+    <%= link_back(policies_select_company_path) %>
+    <%= link_to_dash %>
+    </div>
+  </div>
+  </div>
+<h2 class="col-md-offset-2 col-sm-offset-5 col-xs-offset-4 form_header"> no plans, select a different company!!</h2>
+<% end %>

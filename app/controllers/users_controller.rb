@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    
   end
 
   def destroy
@@ -30,7 +31,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    @user.admin = false
     if @user.save
       redirect_to users_path
     else
@@ -38,12 +38,26 @@ class UsersController < ApplicationController
     end 
   end
 
+  def make_admin
+    @usr = User.find(params[:id])
+    @usr.admin = true
+    if @usr.update_attribute(:admin,"true")
+      flash[:notice] = "the user was made admin"
+      redirect_to users_path
+    else
+      flash[:notice] = "the user was not made admin"
+      redirect_to users_path
+    end
+  end 
+
   def get_user
     @user = User.find(params[:id])
   end
+
   private
+
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :contact_number, :address, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :admin, :contact_number, :address, :email, :password, :password_confirmation)
   end
 
 end

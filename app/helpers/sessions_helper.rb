@@ -18,9 +18,15 @@ module SessionsHelper
 
   def logged_in_user
       unless user_signed_in?
-         redirect_to login_url, notice: "you need to logIn/Signup first"
+         redirect_to login_url
       end
    end
+
+def exclusive_admin
+  if current_user.admin==false
+    redirect_to dash_welcome_path
+  end
+end
 
    def session_active
     if user_signed_in?

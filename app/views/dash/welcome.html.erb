@@ -1,13 +1,25 @@
 <div class="container">
   <div class="rows">
-  <div class="col-md-4 col-sm-4 col-xs-12">
-    policies
+  <%= link_to policies_path do %>
+  <div class="col-md-4 col-sm-4 col-xs-12 welcomebox">
+  <%= image_tag("policy.png",class: "col-md-offset-4 col-sm-offset-4" ,alt: "policy", width: '100px', height: '100px') %>
+    <h1 class="col-md-offset-4">Policies</h1><br>
+    <h3> <%= pluralize(@policies.count, "policy") %> <br> click to view and add <strong>Policies</strong> </h3><br>
   </div>
-  <div class="col-md-4 col-sm-4 col-xs-12">
-    companies
+  <% end %>
+  <%= link_to companies_path do %>
+  <div class="col-md-4 col-sm-4 col-xs-12 welcomebox">
+  <%= image_tag("company.png", class: "col-md-offset-4 col-sm-offset-4" ,alt: "company", width: '100px', height: '100px') %>
+     <h1 class="col-md-offset-4">Companies</h1><br>
+     <h3> <%= pluralize(@companies.count, "companies") %> <br> click to view <strong>Companies</strong> </h3><br>
   </div>
-  <div class="col-md-4 col-sm-4 col-xs-12">
-    plans
+  <% end %>
+  <%= link_to plans_path do %>
+  <div class="col-md-4 col-sm-4 col-xs-12 welcomebox">
+  <%= image_tag("plan.png",class: "col-md-offset-4 col-sm-offset-4" ,alt: "plan", width: '100px', height: '100px') %>
+    <h1 class="col-md-offset-4">Plans</h1><br>
+     <h3> <%= pluralize(@plans.count, "plan") %> <br> click to view <strong>Plans</strong> </h3><br>
   </div>
+  <% end %>
   </div>
 </div>

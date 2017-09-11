@@ -1,2 +1,11 @@
+<% @companies = Company.all %>
+<% if @companies.count != 0 %>
  <h2 class="col-md-offset-5 col-sm-offset-5 col-xs-offset-4 form_header"> New Plan</h2>
  <%= render "form" %>
+<% else %>
+  <h2 class="col-md-offset-2 col-sm-offset-5 col-xs-offset-4 form_header"> there are no companies.</h2>
+<div class = container>
+   <%= link_back(plans_path) %>
+</div>
+ 
+<% end %>

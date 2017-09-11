@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :comments, dependent: :destroy
+
+
   validates :email, presence: true
   validates :email, presence: true, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }

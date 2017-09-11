@@ -17,6 +17,7 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th></th>
+      <th></th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
         <td><%=i.first_name%></td>
         <td><%=i.last_name%></td>
          <td><%= link_to_show(user_path(id: i.id)) %> </td>
+         <td><%= link_to "make admin", users_make_admin_path(id: i.id), class: "btn btn-warning btn-md"  if i.admin==false %></td>
         </tr>
       <% end %>
     </tbody>

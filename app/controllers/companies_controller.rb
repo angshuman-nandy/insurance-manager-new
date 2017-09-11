@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :logged_in_user
   before_action :get_company, only:[:edit, :update, :destroy, :show]
+   before_action :exclusive_admin, only: [:create, :new, :edit, :destroy]
   
   def index
     @companies = Company.all

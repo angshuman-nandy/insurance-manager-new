@@ -3,12 +3,21 @@ class PoliciesController < ApplicationController
   before_action :get_policy, only:[:edit, :update, :destroy, :show] 
 
   def new
-    @plan_id = params[:plan_id] 
-    @policy = Policy.new()
+    @plan_id = params[:plan_id]
+    if(@plan_id.nil?)
+       redirect_to policies_select_company_path   
+    else
+      @plan = Plan.find(@plan_id) 
+      @users = User.all
+      @policy = Policy.new()
+    end
   end
 
   def create
     @policy = Policy.new(policy_params)
+    @p_id = @policy.plan_id
+    @plan = Plan.find(@p_id) 
+    @users = User.all
     if @policy.save
       redirect_to policies_path, flash: {success: "policy saved!!"}
     else
@@ -21,21 +30,38 @@ class PoliciesController < ApplicationController
    end
 
    def select_plan
-    @plans = Plan.where(company_id: params[:company_id])
+    @company_id = params[:company_id]
+    if @company_id.nil?
+      redirect_to policies_select_company_path
+    else
+    @plans = Plan.where(company_id: @company_id)
+    end  
   end
 
   def index
-    @policies = Policy.all
+    if current_user.admin==true
+      @policies = Policy.all
+    else
+      @policies = Policy.where(user_id: current_user.id)
+    end
   end
 
   def show
   end
 
   def edit
+     @plan_id = @policy.plan_id
+    if(@plan_id.nil?)
+       redirect_to policies_select_company_path   
+    else
+      @plan = Plan.find(@plan_id) 
+      @users = User.all
+      @policy = Policy.new()
+    end
   end
 
   def get_policy
-    @plan = Policy.find(params[:id])   
+    @policy = Policy.find(params[:id])   
   end
    private
 

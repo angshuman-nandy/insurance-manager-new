@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907161554) do
+ActiveRecord::Schema.define(version: 20170910121619) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "policy_id"
+    t.index ["policy_id"], name: "index_comments_on_policy_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -32,7 +42,6 @@ ActiveRecord::Schema.define(version: 20170907161554) do
   end
 
   create_table "policies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "holder_name",                   null: false
     t.string   "policy_type"
     t.string   "description"
     t.decimal  "sum_insured",    precision: 10, null: false
@@ -43,10 +52,8 @@ ActiveRecord::Schema.define(version: 20170907161554) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "user_id"
-    t.integer  "poltype_id"
     t.integer  "plan_id"
     t.index ["plan_id"], name: "index_policies_on_plan_id", using: :btree
-    t.index ["poltype_id"], name: "index_policies_on_poltype_id", using: :btree
     t.index ["user_id"], name: "index_policies_on_user_id", using: :btree
   end
 
@@ -62,6 +69,8 @@ ActiveRecord::Schema.define(version: 20170907161554) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "comments", "policies"
+  add_foreign_key "comments", "users"
   add_foreign_key "plans", "companies"
   add_foreign_key "policies", "plans"
   add_foreign_key "policies", "users"

@@ -1,0 +1,128 @@
+<p id="pol_duration" class="hidden"><%= @plan.duration %></p>
+<p id="pol_ins_amt" class="hidden"><%= @plan.sum_insured %></p>
+<% @date= Date.today() + @plan.duration.year %>
+<div class="container form_box">
+ <%= form_for @policy, :html => {:class => "form-horizontal center"} do |f| %>
+   <% if @policy.errors.any? %>
+        <div id="error_explanation col-sm-offset-4" style="color: red;">
+          <h2>
+          <%= pluralize(@policy.errors.count, "error") %> prohibited
+          this policy from being saved:
+          </h2>
+          <ul>
+          <% @policy.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+        <div class="form-group">
+          <%= f.label :user_id, "Holder's name", class: "col-md-4 control-label" %>
+          <div class="col-md-4">
+            <%= f.collection_select :user_id, @users, :id, :first_name if current_user.admin == true %>
+            <% if current_user.admin == false %>
+            <h4><%= current_user.first_name %> <%= current_user.last_name%></h4>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <% end %>
+          </div>
+        </div> 
+
+
+       <div class="form-group">
+        <%= f.label :policy_type, "Name of Plan", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.text_field :policy_type ,value: @plan.name ,readonly: true %>
+        </div>
+      </div>  
+
+      <div class="form-group">
+        <%= f.label :description, "Description", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.text_field :description,readonly: true ,value: @plan.description %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sum_insured, "Insured Amount", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.number_field :sum_insured, min: '1000', step: '1000' ,value: @plan.sum_insured, id: 'sum_ins' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :premium_amount, "premium Amount", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+           <%= f.text_field :premium_amount ,value: @plan.premium_amount ,readonly: true, id: 'prem_amt' %>
+        </div>
+      </div>
+       
+          
+      <div class="form-group">
+         <%= f.label :commission, "Commission", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.text_field :commission , readonly: true, id: 'com' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :purchase_date , "Date of purchase", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.date_field :purchase_date ,value: Date.today ,readonly: true%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :mature_date, "Maturity Date", class: "col-md-4 control-label" %>
+        <div class="col-md-4">
+          <%= f.date_field :mature_date ,value: @date ,readonly: true %>
+        </div>
+      </div>
+
+     <div class="form-group">
+          <%= f.hidden_field :plan_id ,value: @plan.id ,readonly: true %>
+      </div>
+
+
+     <div class="form-group">        
+      <div class="col-md-offset-4">
+        <%= f.submit "Submit", class: "btn btn-btn-success btn-lg" %>
+         <%= link_back(policies_path) %>
+         <%= link_to_dash %>
+      </div>
+    </div>
+     
+ <% end %>
+ </div>
+
+
+ <script type="text/javascript">
+$( document ).ready(function() {
+   v = $('#pol_ins_amt').text();
+   dur = $('#pol_duration').text();
+     if(dur!=0)
+    var total = parseInt(v/dur);
+    var com = parseInt(0.2 * total);
+    $("#prem_amt").val(total);
+    $("#com").val(com)
+
+});
+  $("#sum_ins").change(function(){
+    dur = $('#pol_duration').text();
+
+    var price = Number($(this).val());
+    if(dur!=0)
+    var total = parseInt((price)/dur);
+    var com = parseInt(0.2 * total);
+    $("#prem_amt").val(total);
+    $("#com").val(com)
+});
+
+
+
+function updatePrice(val)
+{
+    $("#sum_ins").val(val);
+    $("#sum_ins").trigger('change');
+}
+
+</script>

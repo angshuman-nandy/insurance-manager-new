@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   get 'dash/welcome'
   get 'policies/select_company'
   get 'policies/select_plan'
+  get 'users/make_admin'
   root to: 'dash#welcome'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  resources :users,:companies,:plans, :policies
+  resources :users,:companies,:plans, :policies, :comments
 end

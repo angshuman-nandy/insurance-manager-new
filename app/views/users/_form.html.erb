@@ -62,8 +62,11 @@
           <%= f.text_field :address,placeholder: "only numbers and letters", class: "form-control" %>
         </div>
       </div>
+
+      <%= f.hidden_field :admin, value: false %>
+      
      <div class="form-group">        
-      <div class="col-sm-offset-4 col-sm-10">
+      <div class="col-md-offset-4">
         <%= f.submit "Submit", class: "btn btn-btn-success btn-lg" %>
       </div>
     </div>

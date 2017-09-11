@@ -6,7 +6,7 @@
     <ul class="dropdown-menu dropdown-menu-center">
             <li class="text-center"> <%= link_to "home", dash_welcome_path %> </li>
             <li class="text-center"> <%= link_to "show details", user_path(current_user.id) %> </li>
-            <li class="text-center"> <%= link_to "edit"%></li>
+            <li class="text-center"> <%= link_to "edit", edit_user_path(current_user.id)%></li>
             <li class="text-center"><%= link_to "Log out", logout_path, method: :delete %></li>
     </ul>
   </div>

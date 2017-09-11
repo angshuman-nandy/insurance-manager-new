@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   before_action :logged_in_user
   before_action :get_plan, only:[:edit, :update, :destroy, :show] 
+   before_action :exclusive_admin, only: [:create, :new, :edit, :destroy]
 
   def index
     @plans= Plan.all.reorder("Company_id")  

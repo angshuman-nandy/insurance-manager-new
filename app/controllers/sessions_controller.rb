@@ -6,11 +6,10 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      # user page
       log_in user
-      redirect_to dash_welcome_path
+      redirect_to dash_welcome_path, flash: {success: "looged in"}
     else
-      render "new"
+      render "new" , notice: "please enter correct email/password!!"
     end
   end
 
